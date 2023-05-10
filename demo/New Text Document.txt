@@ -1,0 +1,24 @@
+DROP TABLE IF EXISTS pokedex;
+DROP TABLE IF EXISTS pokemon;
+DROP TABLE IF EXISTS categoria;
+
+CREATE TABLE Categoria (
+  id_categoria SERIAL PRIMARY KEY,
+  nombre VARCHAR(255)
+);
+
+CREATE TABLE pokemon (
+  id_pokemon SERIAL PRIMARY KEY,
+  nombre VARCHAR(255),
+  categoria_id int,
+  FOREIGN KEY (categoria_id) REFERENCES categoria(id_categoria)
+);
+
+CREATE TABLE pokedex (
+  fk_pokemon int,
+  fk_categoria int,
+	
+	FOREIGN KEY (fk_categoria) REFERENCES categoria(id_categoria),
+	FOREIGN KEY (fk_pokemon) REFERENCES pokemon(id_pokemon)
+	
+);
